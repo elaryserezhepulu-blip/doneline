@@ -1,26 +1,21 @@
+# Free setup: Render free web service + Neon free Postgres + Brevo free email API.
+# Keep it awake & run reminders with a free cron-job.org ping to /cron every 5 minutes.
 services:
   - type: web
     name: doneline
     runtime: node
-    plan: starter
+    plan: free
     buildCommand: npm install
     startCommand: npm start
+    healthCheckPath: /cron
     envVars:
       - key: NODE_VERSION
         value: "22.12.0"
-      - key: DATA_DIR
-        value: /var/data
-      - key: BASE_URL
-        sync: false
       - key: SITE_NAME
         value: Doneline
-      - key: GMAIL_USER
+      - key: DATABASE_URL      # Neon connection string (paste in Render dashboard)
         sync: false
-      - key: GMAIL_APP_PASSWORD
+      - key: BREVO_API_KEY     # Brevo → SMTP & API → API keys
         sync: false
-      - key: SETUP_CODE
+      - key: MAIL_FROM_EMAIL   # your Gmail, verified as a sender in Brevo
         sync: false
-    disk:
-      name: data
-      mountPath: /var/data
-      sizeGB: 1
