@@ -669,7 +669,7 @@
     try {
       const rows = await api('GET', '/api/outbox');
       $('#outbox').innerHTML = rows.length ? rows.map((r) => `<a href="/api/outbox/${r.id}" target="_blank" rel="noopener" title="${esc(r.error || r.to_addr)}">
-        <span class="st ${r.status}">${r.status}</span><span class="sj">${esc(r.subject)} → ${esc(r.to_addr)}</span><span class="tm">${esc(dayLabel(localDateOfTs(r.created_at)))} ${esc(localTimeOfTs(r.created_at))}</span></a>`).join('')
+        <span class="st ${r.status}">${r.status}</span><span class="sj">${esc(r.subject)} → ${esc(r.to_addr)}</span><span class="tm">${esc(dayLabel(localDateOfTs(r.created_at)))} ${esc(localTimeOfTs(r.created_at))}</span></a>${r.error ? `<div class="ob-err">${esc(r.error)}</div>` : ''}`).join('')
         : '<p class="hint" style="margin:0">No emails yet.</p>';
     } catch { /* ignore */ }
   }
