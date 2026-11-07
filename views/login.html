@@ -21,7 +21,7 @@
   <form id="setup" hidden>
     <h1>Make it yours</h1>
     <p class="muted">First-time setup. The 6-digit setup code is printed in the server console, so only you can claim this board.</p>
-    <input id="sCode" inputmode="numeric" placeholder="Setup code" required autocomplete="one-time-code">
+    <input id="sCode" inputmode="numeric" placeholder="6-digit setup code (from Render logs)" required autocomplete="off" maxlength="6" pattern="\d{6}">
     <input id="sEmail" type="email" placeholder="Your Gmail (for reminders)" required autocomplete="email">
     <input id="sPw" type="password" placeholder="Password (8+ characters)" minlength="8" required autocomplete="new-password">
     <input id="sPw2" type="password" placeholder="Repeat password" minlength="8" required autocomplete="new-password">
