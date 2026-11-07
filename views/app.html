@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#6366f1">
+<title>{{SITE_NAME}}</title>
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="stylesheet" href="/app.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="side" id="side">
+    <a class="brand" href="/app"><span class="logo">✓</span> {{SITE_NAME}}</a>
+    <nav id="views" class="views"></nav>
+    <div class="side-sec">
+      <div class="side-h">Tags</div>
+      <div id="tags" class="tag-list"></div>
+    </div>
+    <div class="side-foot">
+      <button class="side-btn" id="btnSettings" type="button">⚙ Settings</button>
+      <button class="side-btn" id="btnHelp" type="button" title="Keyboard shortcuts (?)">⌨ Shortcuts</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="top">
+      <div class="top-l">
+        <h1 id="viewTitle">Today</h1>
+        <div id="viewSub" class="sub"></div>
+      </div>
+      <div class="top-r">
+        <div id="stats" class="stats"></div>
+        <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search" autocomplete="off"><kbd>/</kbd></label>
+      </div>
+    </header>
+
+    <form id="quick" class="quick" autocomplete="off">
+      <span class="quick-plus">+</span>
+      <input id="qa" maxlength="500" placeholder="Add a task — try “Call mom tomorrow 7pm #family !2”" aria-label="Add a task">
+      <button class="quick-go" type="submit">Add <kbd>↵</kbd></button>
+    </form>
+    <div id="chips" class="chips"></div>
+
+    <section id="list" class="list" aria-live="polite"></section>
+  </main>
+</div>
+
+<nav class="tabbar" id="tabbar"></nav>
+<div id="toast" class="toast" role="status"></div>
+
+<dialog id="settings" class="dlg">
+  <form method="dialog" class="dlg-head"><h2>Settings</h2><button class="x" aria-label="Close">✕</button></form>
+  <div class="dlg-body">
+    <section class="set-sec">
+      <h3>📬 Notifications</h3>
+      <label class="fld">Your email (reminders &amp; daily digest)<input id="sEmail" type="email"></label>
+      <div class="row2">
+        <label class="fld">Daily digest at<input id="sDigestTime" type="time"></label>
+        <label class="fld">Timezone<input id="sTz" list="tzList"></label>
+        <datalist id="tzList"></datalist>
+      </div>
+      <label class="chk"><input id="sDigestOn" type="checkbox"> Send me a morning digest of overdue + today's tasks</label>
+      <div class="set-actions">
+        <button class="btn" id="sSave" type="button">Save</button>
+        <button class="btn ghost" id="sTest" type="button">Send test email</button>
+        <button class="btn ghost" id="sDigestNow" type="button">Send digest now</button>
+      </div>
+      <p id="mailMode" class="hint"></p>
+    </section>
+
+    <section class="set-sec">
+      <h3>👥 People who get emails</h3>
+      <p class="hint">Add people, then assign them to a task with <b>@name</b> in quick-add (or in the task's details). They get an email reminder for those tasks. Tick “digest” to also send them a morning list of their tasks. They can't log in — the app is only yours.</p>
+      <div id="peopleList" class="people"></div>
+      <form id="personForm" class="person-add">
+        <input id="pName" placeholder="Name" required maxlength="80">
+        <input id="pEmail" type="email" placeholder="name@gmail.com" required>
+        <label class="chk"><input id="pDigest" type="checkbox"> digest</label>
+        <button class="btn" type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="set-sec">
+      <h3>📤 Recent emails</h3>
+      <div id="outbox" class="outbox"></div>
+    </section>
+
+    <section class="set-sec">
+      <h3>🔒 Account</h3>
+      <form id="pwForm" class="row2">
+        <input id="pwCur" type="password" placeholder="Current password" autocomplete="current-password" required>
+        <input id="pwNew" type="password" placeholder="New password (8+)" autocomplete="new-password" minlength="8" required>
+        <button class="btn ghost" type="submit">Change password</button>
+      </form>
+      <div class="set-actions">
+        <a class="btn ghost" href="/api/export">Export all data (JSON)</a>
+        <button class="btn danger" id="logout" type="button">Log out</button>
+      </div>
+    </section>
+  </div>
+</dialog>
+
+<dialog id="help" class="dlg narrow">
+  <form method="dialog" class="dlg-head"><h2>Shortcuts &amp; tricks</h2><button class="x" aria-label="Close">✕</button></form>
+  <div class="dlg-body help">
+    <h3>Keyboard</h3>
+    <div class="keys">
+      <kbd>N</kbd><span>New task</span>
+      <kbd>/</kbd><span>Search</span>
+      <kbd>J</kbd> <kbd>K</kbd><span>Move down / up</span>
+      <kbd>X</kbd><span>Complete / restore</span>
+      <kbd>Enter</kbd><span>Open details</span>
+      <kbd>T</kbd><span>Move to today</span>
+      <kbd>M</kbd><span>Move to tomorrow</span>
+      <kbd>W</kbd><span>Move to next week</span>
+      <kbd>S</kbd><span>Someday (no date)</span>
+      <kbd>P</kbd><span>Cycle priority</span>
+      <kbd>Del</kbd><span>Delete</span>
+      <kbd>U</kbd><span>Undo last action</span>
+      <kbd>1</kbd>–<kbd>5</kbd><span>Switch views</span>
+      <kbd>Esc</kbd><span>Close / unfocus</span>
+    </div>
+    <h3>Quick-add language</h3>
+    <ul class="tricks">
+      <li><b>Dates:</b> today, tomorrow, friday, next week, weekend, 5 dec, 15.12, in 3 days, in 2 hours, завтра</li>
+      <li><b>Times:</b> 7pm, 18:30, at 9, noon, tonight</li>
+      <li><b>Repeat:</b> every day, weekdays, every monday, every other week, monthly</li>
+      <li><b>Priority:</b> !!! or !1 = high, !! = medium, ! = low</li>
+      <li><b>Tags:</b> #uni #home &nbsp; <b>People:</b> @ali</li>
+      <li>Click ✕ on a detected chip to keep that word as plain text.</li>
+      <li>Paste a multi-line list into the box to add many tasks at once.</li>
+    </ul>
+  </div>
+</dialog>
+
+<script src="/parse.js"></script>
+<script src="/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: doneline
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: "22.12.0"
+      - key: DATA_DIR
+        value: /var/data
+      - key: BASE_URL
+        sync: false
+      - key: SITE_NAME
+        value: Doneline
+      - key: GMAIL_USER
+        sync: false
+      - key: GMAIL_APP_PASSWORD
+        sync: false
+      - key: SETUP_CODE
+        sync: false
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1

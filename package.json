@@ -1,0 +1,16 @@
+{
+  "name": "doneline",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private notes & to-do board with Gmail reminders",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --no-warnings server.js",
+    "dev": "node --no-warnings --watch server.js"
+  },
+  "engines": { "node": ">=22.5" },
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemailer": "^6.9.16"
+  }
+}

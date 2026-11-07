@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Sign in · {{SITE_NAME}}</title>
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/action.css">
+</head>
+<body>
+<main class="card">
+  <a class="brand" href="/">✓ {{SITE_NAME}}</a>
+  <form id="login" hidden>
+    <h1>Welcome back</h1>
+    <p class="muted">This board is private. Owner only.</p>
+    <input type="text" name="username" autocomplete="username" value="owner" hidden>
+    <input id="lPw" type="password" placeholder="Password" autocomplete="current-password" required autofocus>
+    <button class="btn">Sign in</button>
+  </form>
+  <form id="setup" hidden>
+    <h1>Make it yours</h1>
+    <p class="muted">First-time setup. The 6-digit setup code is printed in the server console, so only you can claim this board.</p>
+    <input id="sCode" inputmode="numeric" placeholder="Setup code" required autocomplete="one-time-code">
+    <input id="sEmail" type="email" placeholder="Your Gmail (for reminders)" required autocomplete="email">
+    <input id="sPw" type="password" placeholder="Password (8+ characters)" minlength="8" required autocomplete="new-password">
+    <input id="sPw2" type="password" placeholder="Repeat password" minlength="8" required autocomplete="new-password">
+    <button class="btn">Create my board</button>
+  </form>
+  <p id="err" class="err"></p>
+</main>
+<script src="/login.js"></script>
+</body>
+</html>

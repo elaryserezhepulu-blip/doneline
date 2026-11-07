@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{SITE_NAME}} — {{SITE_TAGLINE}}</title>
+<meta name="description" content="{{SITE_NAME}} is a fast, private notes and to-do board: type tasks in plain language, tick them off in one click, and get Gmail reminders and a morning digest.">
+<link rel="canonical" href="{{BASE_URL}}/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#6366f1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{SITE_NAME}} — {{SITE_TAGLINE}}">
+<meta property="og:description" content="Private notes & to-dos with natural-language quick-add, one-click done and Gmail reminders.">
+<meta property="og:url" content="{{BASE_URL}}/">
+<meta property="og:site_name" content="{{SITE_NAME}}">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/landing.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"{{SITE_NAME}}","url":"{{BASE_URL}}/","applicationCategory":"ProductivityApplication","operatingSystem":"Any (web browser)","description":"Private notes and to-do board with natural-language quick-add, one-click completion, Gmail reminders and a daily digest.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="logo">✓</span>{{SITE_NAME}}</a>
+  <a class="signin" href="/login">Owner sign in →</a>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <span class="pill">Private · Fast · Email reminders</span>
+      <h1>{{SITE_TAGLINE}}</h1>
+      <p class="lead">{{SITE_NAME}} is a personal notes &amp; to-do board. Type a task the way you'd say it, tick it off in one click, and let Gmail remind you before it's due.</p>
+      <div class="cta"><a class="btn" href="/login">Open my board</a><a class="btn ghost" href="#how">How it works</a></div>
+      <p class="small">This board belongs to one person. Visitors can look, but only the owner can sign in.</p>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-add"><span>+</span>Call mom tomorrow 7pm #family !!</div>
+      <div class="mock-chips"><i>📅 Tomorrow</i><i>⏰ 19:00</i><i>#family</i><i>⚑ Medium</i></div>
+      <div class="mock-h">Today <b>3</b></div>
+      <div class="mock-row done"><span class="c ok">✓</span><div><s>Submit essay draft</s><small>#uni</small></div></div>
+      <div class="mock-row"><span class="c red"></span><div>Pay internet bill<small class="red">⚠ Yesterday · ↻ every month</small></div></div>
+      <div class="mock-row"><span class="c amber"></span><div>Gym<small>18:30 · 🔔 · ↻ weekdays</small></div></div>
+      <div class="mock-row"><span class="c"></span><div>Read 20 pages<small>#books</small></div></div>
+    </div>
+  </section>
+
+  <section id="how" class="features">
+    <article><div class="ic">⌨</div><h2>Write like you talk</h2><p>“Dentist friday 3pm !!!” becomes a high-priority task on Friday at 15:00. Dates, times, repeats, #tags and @people are detected as you type.</p></article>
+    <article><div class="ic">✓</div><h2>Done in one click</h2><p>Click the circle or press X. Every action can be undone. Repeating tasks roll forward to the next date automatically.</p></article>
+    <article><div class="ic">📬</div><h2>Gmail reminders</h2><p>Get an email at the moment a task is due, plus a morning digest of today and anything overdue — with “Done” and “Tomorrow” buttons right in the email.</p></article>
+    <article><div class="ic">👥</div><h2>Loop people in</h2><p>Add family or teammates by email and mention them with @name. They get reminders for their tasks — without needing an account.</p></article>
+    <article><div class="ic">☀</div><h2>Today, Upcoming, Someday</h2><p>Smart views keep the list short: what's due now, what's coming, and ideas for later. Overdue tasks move to today in one click.</p></article>
+    <article><div class="ic">🔒</div><h2>Private by design</h2><p>One owner, one password. Your tasks are never shown on this public page or indexed by search engines.</p></article>
+  </section>
+</main>
+
+<footer class="foot">© <span>{{SITE_NAME}}</span> · <a href="/login">Sign in</a></footer>
+</body>
+</html>
