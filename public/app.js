@@ -645,7 +645,7 @@
     const mm = $('#mailMode');
     if (S.me.mail_mode === 'preview') {
       mm.className = 'hint warn';
-      mm.innerHTML = '⚠ Email is in <b>preview mode</b>: messages are saved below but not sent. Put <code>GMAIL_USER</code> and <code>GMAIL_APP_PASSWORD</code> in the server’s <code>.env</code> and restart to send real Gmail.';
+      mm.innerHTML = '⚠ Email is in <b>preview mode</b>: messages are saved below but not sent. Set <code>BREVO_API_KEY</code> + <code>MAIL_FROM_EMAIL</code> (hosting) or <code>GMAIL_USER</code> + <code>GMAIL_APP_PASSWORD</code> (local) and restart to send real email.';
     } else {
       mm.className = 'hint ok';
       mm.textContent = `✓ Sending real email via ${S.me.mail_mode} from ${S.me.mail_from}`;

@@ -27,14 +27,18 @@ Without these, emails are saved in Settings → *Recent emails* (preview mode) i
 - **Morning digest** (default 08:00) of overdue + today's tasks. People with "digest" ticked get only their own tasks.
 - Your emails have **✓ Done** and **→ Tomorrow** buttons that work without logging in (signed links + confirm page).
 
-## Put it online (so people can find it in Google)
-Any Node 22.5+ host with a persistent disk works. Example with **Render**:
+## Put it online for free (so people can find it in Google)
+Free stack: **Render** (web app) + **Neon** (Postgres, keeps your notes) + **Brevo** (email API — Render's free plan blocks SMTP, so Gmail SMTP can't be used there) + **cron-job.org** (wakes the app every 5 min so reminders go out).
 1. Push this folder to a GitHub repo (`.env` and `data/` are git-ignored).
-2. Render → New → Blueprint → pick the repo (uses `render.yaml`), or New Web Service with `npm install` / `npm start`.
-3. Set env vars: `BASE_URL=https://your-name.onrender.com`, `SITE_NAME`, `GMAIL_USER`, `GMAIL_APP_PASSWORD`, `SETUP_CODE` (pick any 6 digits), `DATA_DIR=/var/data`.
-4. Open `/login`, use your SETUP_CODE to claim it.
-5. Google Search Console → add your URL → submit `https://…/sitemap.xml`. Indexing takes a few days.
+2. **Neon** → create a project → copy the connection string (`postgresql://…?sslmode=require`).
+3. **Brevo** → Senders → add & verify your Gmail as a sender → SMTP & API → create an API key.
+4. **Render** → New → Blueprint → pick the repo (uses `render.yaml`). Paste `DATABASE_URL`, `BREVO_API_KEY`, `MAIL_FROM_EMAIL` (your Gmail).
+5. Open the Render **Logs** → copy the 6-digit setup code → open `https://<app>.onrender.com/login` and claim it.
+6. **cron-job.org** → new cron job → URL `https://<app>.onrender.com/cron` → every 5 minutes.
+7. Google Search Console → add your URL → submit `https://…/sitemap.xml`. Indexing takes a few days.
    Put your name in `SITE_NAME` / `SITE_TAGLINE` if you want people to find it by searching your name.
+
+Paid alternative: any always-on host (Render Starter etc.) can use Gmail SMTP directly and SQLite on a disk (`DATA_DIR`).
 
 Only `/` is indexable; `/app`, `/api`, `/login` and email links are blocked from search engines and need your password.
 
